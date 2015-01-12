@@ -1,0 +1,3 @@
+2 1 cadeira quadrada vermelho
+10 9 mesa circular verde
+0 1 cama rectangular amarela
