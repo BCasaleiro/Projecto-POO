@@ -23,11 +23,15 @@ public class GUI implements ActionListener{
     JLabel textLifeSpan = new JLabel("Tempo de vida");
     JLabel textFieldOfSight = new JLabel("Raio de visão");
     JLabel textAgentColor = new JLabel("Cor do Agente");
+    JLabel textAgentCoordX = new JLabel("X");
+    JLabel textAgentCoordY = new JLabel("Y");
     JTextField tFieldWorldSize = new JTextField(10);
     JTextField tFieldFieldOfSight = new JTextField(10);
     JTextField tFieldLifeSpan = new JTextField(10);
     JTextField tFieldNAgents = new JTextField(10);
     JTextField tFieldNObjects = new JTextField(10);
+    JTextField tFieldAgentCoordX = new JTextField(5);
+    JTextField tFieldAgentCoordY = new JTextField(5);
     ButtonGroup optionAgentType = new ButtonGroup();
     JRadioButton optionRandom = new JRadioButton("Random", true);
     JRadioButton optionClosest = new JRadioButton("Mais próximo");
@@ -36,20 +40,24 @@ public class GUI implements ActionListener{
     JButton button = new JButton("Button");
     
     //variaveis para retirar
-    GUI agentInfo;
-    static boolean gotInput;
-    static int type;
     static int worldSize;
     static int nAgents;
-    static int nObjects;
-    static int agentType;
-    static int lifeSpan;
-    static int fieldOfSight;
-    static String color;
+    GUI agentInfo;
+    World world;
+    boolean gotInput;
+    int type;
+    int x;
+    int y;
+    
+    int agentType;
+    int lifeSpan;
+    int fieldOfSight;
+    String color;
     
     //Constructor
-    GUI(int type){
+    GUI(int type, World world){
         this.type = type;
+        this.world = world;
         window.setLayout(new GridLayout(1, 2));
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
@@ -65,8 +73,8 @@ public class GUI implements ActionListener{
             panel.add(tFieldNObjects);
         } else {
             window.setTitle("Agente");
-            window.setSize(500, 125);
-            panel.setSize(500, 175);
+            window.setSize(475, 150);
+            panel.setSize(475, 150);
             panel.add(textAgentType);
             optionAgentType.add(optionRandom);
             optionAgentType.add(optionClosest);
@@ -78,6 +86,10 @@ public class GUI implements ActionListener{
             panel.add(tFieldLifeSpan);
             panel.add(textFieldOfSight);
             panel.add(tFieldFieldOfSight);
+            panel.add(textAgentCoordX);
+            panel.add(tFieldAgentCoordX);
+            panel.add(textAgentCoordY);
+            panel.add(tFieldAgentCoordY);
             panel.add(textAgentColor);
             colors.addItem("Azul");
             colors.addItem("Amarelo");
@@ -141,8 +153,10 @@ public class GUI implements ActionListener{
                 JOptionPane.showMessageDialog(window, warning, "Erro", JOptionPane.WARNING_MESSAGE);
             } else {
                 worldSize = Integer.parseInt(tFieldWorldSize.getText());
+                world.setWorldSize(worldSize);
                 nAgents = Integer.parseInt(tFieldNAgents.getText());
-                nObjects = Integer.parseInt(tFieldNObjects.getText());
+                world.setnAgent(nAgents);
+                world.setnObject(Integer.parseInt(tFieldNObjects.getText()));
                 window.dispose();
                 agentCreation();
             }
@@ -169,6 +183,32 @@ public class GUI implements ActionListener{
                 }
             }
             
+            if(!isInteger(tFieldAgentCoordX.getText())){
+                flag = 1;
+                warning += "A coordenada X deve ser um inteiro\n";
+            } else {
+                if(Integer.parseInt(tFieldAgentCoordX.getText()) < 0){
+                    flag = 1;
+                    warning += "A coordenada X deve estar dentro dos limites do mundo\n";
+                } else if(Integer.parseInt(tFieldAgentCoordX.getText()) >= worldSize){
+                    flag = 1;
+                    warning += "A coordenada X deve estar dentro dos limites do mundo\n";
+                }
+            }
+
+            if(!isInteger(tFieldAgentCoordY.getText())){
+                flag = 1;
+                warning += "A coordenada Y deve ser um inteiro\n";
+            } else {
+                if(Integer.parseInt(tFieldAgentCoordX.getText()) < 0){
+                    flag = 1;
+                    warning += "A coordenada Y deve estar dentro dos limites do mundo\n";
+                } else if(Integer.parseInt(tFieldAgentCoordX.getText()) >= worldSize){
+                    flag = 1;
+                    warning += "A coordenada Y deve estar dentro dos limites do mundo\n";
+                }
+            }
+            
             if(flag == 1){
                 JOptionPane.showMessageDialog(window, warning, "Erro", JOptionPane.WARNING_MESSAGE);
             } else {
@@ -182,10 +222,12 @@ public class GUI implements ActionListener{
                 
                 lifeSpan = Integer.parseInt(tFieldLifeSpan.getText());
                 fieldOfSight = Integer.parseInt(tFieldFieldOfSight.getText());
+                x = Integer.parseInt(tFieldAgentCoordX.getText());
+                y = Integer.parseInt(tFieldAgentCoordY.getText());
                 
                 color = (String)colors.getSelectedItem();
                 window.dispose();
-                System.out.println(agentInfo.color + " " + agentInfo.agentType + " " + agentInfo.lifeSpan);
+                world.addAgent(agentType, fieldOfSight, lifeSpan, color, x, y);
             }
             
         }
@@ -193,7 +235,7 @@ public class GUI implements ActionListener{
     
     private void agentCreation(){
         for(int i = 0; i < GUI.nAgents; i++){
-            agentInfo = new GUI(1);
+            agentInfo = new GUI(1, world);
         }
     }
     
