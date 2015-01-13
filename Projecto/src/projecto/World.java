@@ -30,11 +30,20 @@ public class World {
     }
 
     public void simulation() {
-        showAgents();
-        
         initTerrain();
         
-        showTerrain();
+        for (Agent agent : agents) {
+            agentLife(agent);
+        }
+    }
+    
+    private void agentLife(Agent agent){
+        ArrayList<Obj> fieldOfSight = new ArrayList<>();
+        
+        while(agent.getMemory().getDistance() < agent.lifeSpan){
+            fieldOfSight = agent.getListFieldOfSight(this, agent);
+            agent.getMemory().addFieldOfSight(fieldOfSight);
+        }
     }
     
     private void initTerrain(){
@@ -56,16 +65,16 @@ public class World {
         
         i = 0;
         //Introduzir objectos
-        while(i < nAgent){
+        while(i < nObject){
             tempId = tempId + "O" + String.valueOf(idGeral);
             try {
                 line = files.readLine();
                 if(line != null){
                     st = new StringTokenizer(line);
-                
+
                     x = Integer.parseInt(st.nextToken());
                     y = Integer.parseInt(st.nextToken());
-                
+
                     if(x < 0 || x >= worldSize){
                         System.out.println(st.nextToken() + " fora dos limites do mundo, não introduzido");
                     } else if(y < 0 || y >=worldSize){
@@ -75,24 +84,26 @@ public class World {
                             worldBoard[x][y].setEntity(new Obj(st.nextToken(), tempId, st.nextToken(), st.nextToken(), new Coordinates(x, y)));
                             worldBoard[x][y].setOccupied(true);
                             i++;
+                            idGeral++;
+                            System.out.println(worldBoard[x][y].getEntity().getId() + " introduzido nas coordenadas (" + worldBoard[x][y].getEntity().getCoords().getX() + "," + worldBoard[x][y].getEntity().getCoords().getY() + ")"); //debug
                         } else {
                             System.out.println(st.nextToken() + " possui as mesmas coordenadas de " + worldBoard[x][y].getEntity().getId() + ", não introduzido");
                         }
                     }
-                
-                
-                } else if(line == null){
+
+                    tempId = "";
+                } else {
                     System.out.println("Objectos na configuração insuficientes");
-                }
-                
-                try {
-                files.closeRead();
-                } catch (IOException ex) {
-                    Logger.getLogger(World.class.getName()).log(Level.SEVERE, null, ex);
+                    break;
                 }
             } catch (IOException ex) {
                 Logger.getLogger(World.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
+        try {
+            files.closeRead();
+        } catch (IOException ex) {
+            Logger.getLogger(World.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -171,20 +182,17 @@ public class World {
 
     //debug
     public void showAgents(){
+        System.out.println("\nAgentes: ");
         for(int i = 0; i < agents.size(); i++){
             System.out.println("Agente com o id " + agents.get(i).getId() + ".");
         }
     }
     
     public void showTerrain(){
-        System.out.println("Terrain: ");
+        System.out.println("\nTerrain: ");
         for(int i = 0; i < worldSize; i++){
             for(int j = 0; j < worldSize; j++){
-                if(worldBoard[i][j].isOccupied()){
-                    System.out.println(i + " " + j + " " + worldBoard[i][j].getEntity().getId());
-                } else {
-                    System.out.println(i + " " + j + "empty");
-                }
+                System.out.println(i + " " + j + " " + worldBoard[i][j].getEntity());
             }
         }
     }

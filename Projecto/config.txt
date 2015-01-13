@@ -1,3 +1,5 @@
-2 1 cadeira quadrada vermelho
-10 9 mesa circular verde
-0 1 cama rectangular amarela
+2 1 Cadeira Quadrada Vermelha
+5 4 Mesa Circular Verde
+1 0 Cama Rectangular Amarela
+3 2 Lixo Circular Azul
+4 0 Cadeira Quadrada Vermelha

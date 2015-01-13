@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Memory {
     private ArrayList<Coordinates> agentPath = new ArrayList<>();
-    private ArrayList<ArrayList<Entity>> agentSurrounding = new ArrayList<>();
+    private ArrayList<ArrayList<Obj>> agentSurrounding = new ArrayList<>();
     private ArrayList<Obj> objectsFound = new ArrayList<>();
     private int nObjectsFound = 0;
     private int nDifferentObjFound = 0;
@@ -19,7 +19,7 @@ public class Memory {
         distance++;
     }
     
-    public void addFieldOfSight(ArrayList<Entity> fieldOfSight){
+    public void addFieldOfSight(ArrayList<Obj> fieldOfSight){
         agentSurrounding.add(fieldOfSight);
     }
     
@@ -48,7 +48,7 @@ public class Memory {
         return agentPath;
     }
 
-    public ArrayList<ArrayList<Entity>> getAgentSurrounding() {
+    public ArrayList<ArrayList<Obj>> getAgentSurrounding() {
         return agentSurrounding;
     }
 
