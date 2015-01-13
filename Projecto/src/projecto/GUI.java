@@ -105,6 +105,10 @@ public class GUI implements ActionListener{
         button.addActionListener(this);
     }
     
+    public GUI(String agentInfo){
+        
+    }
+    
     @Override
     public void actionPerformed(ActionEvent evt){
         
@@ -200,10 +204,10 @@ public class GUI implements ActionListener{
                 flag = 1;
                 warning += "A coordenada Y deve ser um inteiro\n";
             } else {
-                if(Integer.parseInt(tFieldAgentCoordX.getText()) < 0){
+                if(Integer.parseInt(tFieldAgentCoordY.getText()) < 0){
                     flag = 1;
                     warning += "A coordenada Y deve estar dentro dos limites do mundo\n";
-                } else if(Integer.parseInt(tFieldAgentCoordX.getText()) >= worldSize){
+                } else if(Integer.parseInt(tFieldAgentCoordY.getText()) >= worldSize){
                     flag = 1;
                     warning += "A coordenada Y deve estar dentro dos limites do mundo\n";
                 }

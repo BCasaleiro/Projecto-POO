@@ -39,11 +39,21 @@ public class World {
     
     private void agentLife(Agent agent){
         ArrayList<Obj> fieldOfSight = new ArrayList<>();
+        Coordinates nextTargetCoords;
         
         while(agent.getMemory().getDistance() < agent.lifeSpan){
             fieldOfSight = agent.getListFieldOfSight(this, agent);
             agent.getMemory().addFieldOfSight(fieldOfSight);
+            nextTargetCoords = agent.pathFinder(fieldOfSight, this, agent);
+            if(nextTargetCoords != null){
+                agent.walk(this, nextTargetCoords, agent);
+                agent.getMemory().addObject(agent.getNextTarget());
+            } else {
+                agent.walkRandomly(this, agent);
+            }
         }
+        
+        System.out.println("O agente " + agent.getId() + " morreu.");
     }
     
     private void initTerrain(){

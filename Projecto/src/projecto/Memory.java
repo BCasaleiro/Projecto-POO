@@ -28,6 +28,7 @@ public class Memory {
         
         nObjectsFound++;
         objectsFound.add(newObject);
+        System.out.println("Adicionado o objecto " + newObject.getId() + " à memória");
         
         for(int i = 0; i < objectsFound.size();i++){
             if(!newObject.getObject().equals(objectsFound.get(i).getObject())){
