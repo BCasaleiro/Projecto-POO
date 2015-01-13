@@ -74,11 +74,13 @@ public abstract class Entity {
 
     /**Método responsável pelo retorno de uma string sempre que existe a tentativa de impressão da class
      * @return string*/
+    @Override
     public String toString() {
         return "Id: " + id + ", Forma: " + shape + ", Cor: " + color + ", Coordenadas: " + coords;
     }
     
     /**Método responsável pelo retorno de uma string sempre que existe a tentativa de impressão da class
+     * @param i
      * @return string*/
     public String toString(int i) {
         return "\nId: " + id + "\nForma: " + shape + "\nCor: " + color;
