@@ -2,6 +2,8 @@ package projecto;
 
 import java.util.ArrayList;
 
+/** Classe para objectos do tipo agente closest, onde serão contidos todos os valores e métodos necessários para a simulação da sua vida*/
+
 public class ClosestAgent extends Agent{
     
     /**Construtor com iniciação de todas as variávei
