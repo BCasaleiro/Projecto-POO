@@ -13,6 +13,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+/** Classe responsável pela interface gráfica*/
+
 public class GUI implements ActionListener{
     JFrame window = new JFrame();
     JPanel panel = new JPanel();
@@ -37,7 +39,7 @@ public class GUI implements ActionListener{
     JRadioButton optionClosest = new JRadioButton("Mais próximo");
     JRadioButton optionMaxDiff = new JRadioButton("Máxima diferença");
     private JComboBox colors = new JComboBox();
-    JButton button = new JButton("Button");
+    JButton button = new JButton("Confirmar");
     
     //variaveis para retirar
     static int worldSize;
@@ -54,7 +56,7 @@ public class GUI implements ActionListener{
     int fieldOfSight;
     String color;
     
-    //Constructor
+    /** Construtor responsável pela introdução de dados iniciais essenciais à criação da simulação */
     GUI(int type, World world){
         this.type = type;
         this.world = world;
@@ -105,9 +107,13 @@ public class GUI implements ActionListener{
         button.addActionListener(this);
     }
     
+    /** Construtor responsável pela criação da interface de display das informações finais de cada agente */
+    
     public GUI(String agentInfo){
         JOptionPane.showMessageDialog(window, agentInfo, "Informação do Agente", JOptionPane.PLAIN_MESSAGE);
     }
+    
+    /** Método responsável pelo tratamento da acções despoletadas pelo click no butão Seguinte */
     
     @Override
     public void actionPerformed(ActionEvent evt){

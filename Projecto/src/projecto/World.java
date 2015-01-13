@@ -6,6 +6,8 @@ import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/** Classe principal do projecto, onde serão contidos todos os valores e métodos para a simulação*/
+
 public class World {
     private int worldSize;
     private int nAgent;
@@ -17,7 +19,10 @@ public class World {
     
     static int idGeral = 0;
     
-    //Construtctor's
+    /**Construtor com iniciação de todas as variávei
+     * @param worldSize
+     * @param nAgent
+     * @param nObject*/
     public World(int worldSize, int nAgent, int nObject) {
         this.worldSize = worldSize;
         this.nAgent = nAgent;
@@ -25,10 +30,14 @@ public class World {
         this.worldBoard = new Terrain[worldSize][worldSize];
     }
     
+    /**Construtor vazio*/
     public World(){
         
     }
 
+    /**Método responsável pelo decorrer de toda a simulação.
+     *Desde a introdução das entidades no mundo à apresentação dos resultados
+     */
     public void simulation() {
         try {
             FileManagement files = new FileManagement();
@@ -50,6 +59,7 @@ public class World {
         }
     }
     
+    /**Método responsável pela "vida" de cada agente sempre introduzindo os seus movimentos na memória destes*/
     private void agentLife(Agent agent){
         ArrayList<Obj> fieldOfSight = new ArrayList<>();
         Coordinates nextTargetCoords;
@@ -69,8 +79,10 @@ public class World {
         System.out.println("O agente " + agent.getId() + " morreu.");
     }
     
+    /**Metodo responsável pela iniciação do mundo e introção das entidades nos seus respectivos lugares*/
     private void initTerrain(){
         FileManagement files = new FileManagement();
+        /**Proteção contra a possível âusencia do ficheiro de configuração dos objectos*/
         try {
             files.openRead("config.txt");
         } catch (IOException ex) {
@@ -130,6 +142,7 @@ public class World {
         }
     }
     
+    /**Método responsável pela introdução dos agentes no ArrayList à medida que o utilizador introduz a configuração destes*/
     public void addAgent(int agentType, int fieldOfSight, int lifeSpan, String color, int x, int y){
         System.out.print("Agente "); //debug
         if(agentType == 1){
@@ -157,6 +170,10 @@ public class World {
         }
     }
 
+    /**Método responsável pela introdução do tamanho do mundo.
+     *Cria também uma matriz do tipo Terrain e inicia a mesma como estando desocupada.
+     * @param worldSize
+     */
     public void setWorldSize(int worldSize) {
         this.worldSize = worldSize;
         this.worldBoard = new Terrain[worldSize][worldSize];
@@ -169,34 +186,56 @@ public class World {
         System.out.println("Mundo criado com a dimensão de " + worldSize + " por " + worldSize + ", com " + worldSize * worldSize + " slots"); //debug
     }
 
+    /**Método responsável pela introdução do número de agentes
+     * @param nAgent.*/
     public void setnAgent(int nAgent) {
         this.nAgent = nAgent;
     }
 
+    /**Método responsável pela introdução do número de objectos
+     * @param nObject.*/
     public void setnObject(int nObject) {
         this.nObject = nObject;
     }
 
+    /**Método responsável pelo retorno do tamanho do mundo.
+     * @return int
+     */
     public int getWorldSize() {
         return worldSize;
     }
 
+    /**Método responsável pelo retorno do número de agentes.
+     * @return int
+     */
     public int getnAgent() {
         return nAgent;
     }
 
+    /**Método responsável pelo retorno do número de objectos.
+     * @return int
+     */
     public int getnObject() {
         return nObject;
     }
 
+    /**Método responsável pelo retorno da matriz que representa o mundo dos agentes.
+     * @return Terrain
+     */
     public Terrain[][] getWorldBoard() {
         return worldBoard;
     }
 
+    /**Método responsável pelo retorno do ArrayList que contem todos os agentes.
+     * @return Terrain
+     */
     public ArrayList<Agent> getAgents() {
         return agents;
     }
 
+    /**Método responsável pelo retorno id Geral utilizado para a definição dos id's de cada entidade.
+     * @return int
+     */
     public static int getIdGeral() {
         return idGeral;
     }
