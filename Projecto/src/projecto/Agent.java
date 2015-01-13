@@ -11,7 +11,7 @@ public abstract class Agent extends Entity{
     protected Obj nextTarget;
     protected Memory memory;
     
-    /**Construtor com iniciação de todas as variávei
+    /**Construtor com iniciação de todas as variáveis
      * @param fieldOfSight
      * @param lifeSpan
      * @param color
@@ -27,7 +27,7 @@ public abstract class Agent extends Entity{
     
     public abstract Coordinates pathFinder(ArrayList<Obj> arrayList, World mundo);
     
-    /**Método responsável pelo andar do agent
+    /**Método responsável pelo andar do agente
      * @param mundo
      * @param coordsFinal
      * @param agent*/
@@ -64,7 +64,7 @@ public abstract class Agent extends Entity{
         mundo.getWorldBoard()[xInitial][yInitial].setEntity(null);
     }
     
-    /**Método responsável pelo andar do agente caso este não tenha objectos por visitar à vist
+    /**Método responsável pelo andar do agente caso este não tenha objectos por visitar à vista
      * @param mundo
      * @param agent*/
     public void walkRandomly(World mundo, Agent agent){
@@ -205,7 +205,7 @@ public abstract class Agent extends Entity{
     }
 
     /**Método responsável pelo retorno de uma string sempre que existe a tentativa de impressão da class
-     * @return e*/
+     * @return String*/
     @Override
     public String toString() {
         return super.toString() + ", Raio de Visão: " + fieldOfSight + ", Tempo de Vida: " + lifeSpan + ", Próximo alvo: " + nextTarget + ", " + memory;

@@ -4,12 +4,23 @@ import java.util.ArrayList;
 
 public class MaxDiffAgent extends Agent {
     
-    //Constructors
+    /**Construtor com iniciação de todas as variávei
+     * @param fieldOfSight
+     * @param lifeSpan
+     * @param id
+     * @param color
+     * @param coords
+     */
     public MaxDiffAgent(int fieldOfSight, int lifeSpan, String id, String color, Coordinates coords) {
         super(fieldOfSight, lifeSpan, id, color, coords);
     }
     
-    //Chose next target
+    /**Método responsavel pela escolha do próximo objecto alvo do agente através do calculo das caracteristicas em comum com os objectos em memória.
+     * Efectua  a proteção para o caso do objecto já se encontrar em memóri
+     * @param arrayList
+     * @param mundo
+     * @return Coordinates
+     */
     @Override
     public Coordinates pathFinder(ArrayList<Obj> arrayList, World mundo) {
         Obj target;
@@ -36,6 +47,8 @@ public class MaxDiffAgent extends Agent {
 	return target.getCoords();
     }
     
+    /**Método responsável pelo retorno do Objecto no campo de visão com a maior diferença nas caracteristicas dos objectos presentes em memória
+     * @return Obj*/
     private Obj maxDiff(ArrayList<Obj> arrayList){
         Obj target = arrayList.get(0);
         
@@ -50,6 +63,8 @@ public class MaxDiffAgent extends Agent {
         return target;
     }
 
+    /**Método responsável pelo retorno do inteiro correspondente às diferenças entre o objecto e os objectos presentes em memória
+     * @return Obj*/
     private int calcDiff(Obj target){
         int diff = 0;
         
@@ -70,6 +85,8 @@ public class MaxDiffAgent extends Agent {
         return diff;
     }
     
+    /**Método responsável pelo retorno de uma string sempre que existe a tentativa de impressão da class
+     * @return String*/
     @Override
     public String toString() {
         return "Agente MaxDiff " + super.toString();

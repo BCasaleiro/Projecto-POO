@@ -3,9 +3,16 @@ package projecto;
 import java.util.ArrayList;
 import java.util.Random;
 
+/** Classe para objectos do tipo agente random, onde serão contidos todos os valores e métodos necessários para a simulação da sua vida*/
+
 public class RandomAgent extends Agent{
     
-    //Chose next target
+    /**Método responsavel pela escolha do próximo objecto alvo do agente de forma aleatória.
+     * Efectua  a proteção para o caso do objecto já se encontrar em memóri
+     * @param arrayList
+     * @param mundo
+     * @return Coordinates
+     */
     @Override
     public Coordinates pathFinder(ArrayList<Obj> arrayList, World mundo) {
 	Random gerador = new Random();
@@ -38,11 +45,19 @@ public class RandomAgent extends Agent{
         return arrayList.get(index).getCoords();
     }
     
-    //Constructors
+    /**Construtor com iniciação de todas as variávei
+     * @param fieldOfSight
+     * @param lifeSpan
+     * @param id
+     * @param color
+     * @param coords
+     */
     public RandomAgent(int fieldOfSight, int lifeSpan, String id, String color, Coordinates coords) {
         super(fieldOfSight, lifeSpan, id, color, coords);
     }
     
+    /**Método responsável pelo retorno de uma string sempre que existe a tentativa de impressão da class
+     * @return String*/
     @Override
     public String toString() {
         return "Agente Random " + super.toString();

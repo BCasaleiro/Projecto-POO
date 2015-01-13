@@ -2,6 +2,8 @@ package projecto;
 
 import java.util.ArrayList;
 
+/** Classe para objectos do tipo memória, onde serão contidos todos os valores e métodos da vida do agente correspondente*/
+
 public class Memory {
     private ArrayList<Coordinates> agentPath = new ArrayList<>();
     private ArrayList<ArrayList<Obj>> agentSurrounding = new ArrayList<>();
@@ -10,19 +12,27 @@ public class Memory {
     private int nDifferentObjFound = 0;
     private int distance = 0;
 
-    //Constructor
+    /**Construtor com vazio*/
     public Memory() {
     }
     
+    /**Método responsável pelo registo de cada passo do agente
+     * @param coords*/
     public void addStep(Coordinates coords){
         agentPath.add(coords);
         distance++;
     }
     
+    /**Método responsável pelo registo do campo de visão do agente a cada passo dado
+     * @param fieldOfSight
+     */
     public void addFieldOfSight(ArrayList<Obj> fieldOfSight){
         agentSurrounding.add(fieldOfSight);
     }
     
+    /**Método responsável pelo registo de cada objecto encontrado pelo agente
+     * @param newObject 
+     */
     public void addObject(Obj newObject){
         int flag  = 0;
         
@@ -42,30 +52,50 @@ public class Memory {
         }   
     }
 
+    /**Método responsável pelo retorno do próximo caminho percorrido pelo agente
+     * @return ArrayList
+     */
     public ArrayList<Coordinates> getAgentPath() {
         return agentPath;
     }
 
+    /**Método responsável pelo retorno do redor por onde o agente passou
+     * @return ArrayList
+     */
     public ArrayList<ArrayList<Obj>> getAgentSurrounding() {
         return agentSurrounding;
     }
 
+    /**Método responsável pelo retorno do objectos encontrados pelo agente
+     * @return ArrayList
+     */
     public ArrayList<Obj> getObjectsFound() {
         return objectsFound;
     }
 
+    /**Método responsável pelo retorno do número de objectos encontrados pelo agente 
+     * @return int
+     */
     public int getnObjectsFound() {
         return nObjectsFound;
     }
 
+    /**Método responsável pelo retorno do número de objectos diferentes encontrados pelo agente
+     * @return int
+     */
     public int getnDifferentObjFound() {
         return nDifferentObjFound;
     }
 
+    /**Método responsável pelo retorno da distância percorrida pelo agente
+     * @return int
+     */
     public int getDistance() {
         return distance;
     }
 
+    /**Método responsável pelo retorno de uma string sempre que existe a tentativa de impressão da class
+     * @return String*/
     @Override
     public String toString() {
         String objFound = "{"; 

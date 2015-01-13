@@ -5,7 +5,7 @@ package projecto;
 public class Obj extends Entity{
     private String object;
     
-    /**Construtor com iniciação de todas as variáve
+    /**Construtor com iniciação de todas as variáveis
      * @param object
      * @param id
      * @param shape
