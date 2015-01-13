@@ -44,7 +44,7 @@ public class World {
         while(agent.getMemory().getDistance() < agent.lifeSpan){
             fieldOfSight = agent.getListFieldOfSight(this, agent);
             agent.getMemory().addFieldOfSight(fieldOfSight);
-            nextTargetCoords = agent.pathFinder(fieldOfSight, this, agent);
+            nextTargetCoords = agent.pathFinder(fieldOfSight, this);
             if(nextTargetCoords != null){
                 agent.walk(this, nextTargetCoords, agent);
                 agent.getMemory().addObject(agent.getNextTarget());

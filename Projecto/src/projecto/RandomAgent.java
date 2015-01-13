@@ -6,13 +6,14 @@ import java.util.Random;
 public class RandomAgent extends Agent{
     
     //Chose next target
-    public Coordinates pathFinder(ArrayList<Obj> arrayList, World mundo, Agent agent) {
+    @Override
+    public Coordinates pathFinder(ArrayList<Obj> arrayList, World mundo) {
 	Random gerador = new Random();
         int index;
         int flag = 0;
         
 	System.out.println("\n----- Agente a escolher o objecto aleatório -----"); //debug	
-	System.out.println("Coordenadas Agente("+ agent.getCoords().getX() + "," + agent.getCoords().getY() + ")"); //debug
+	System.out.println("Coordenadas Agente("+ this.getCoords().getX() + "," + this.getCoords().getY() + ")"); //debug
 		
 	if(arrayList.isEmpty()) {
             return null;
@@ -21,8 +22,8 @@ public class RandomAgent extends Agent{
         do{
             if(!arrayList.isEmpty()){
                 index = gerador.nextInt(arrayList.size());
-                for(int i = 0; i < agent.getMemory().getObjectsFound().size(); i++){
-                    if(arrayList.get(index).getId().equals(agent.getMemory().getObjectsFound().get(i).getId())){
+                for(int i = 0; i < this.getMemory().getObjectsFound().size(); i++){
+                    if(arrayList.get(index).getId().equals(this.getMemory().getObjectsFound().get(i).getId())){
                         System.out.println("O objecto " + arrayList.get(index).getId() + " já se encontra em memória");
                         flag = 1;
                         arrayList.remove(index);
@@ -34,7 +35,7 @@ public class RandomAgent extends Agent{
             }
         }while(flag == 1);
         
-	agent.nextTarget = arrayList.get(index);
+	this.nextTarget = arrayList.get(index);
 		
 	System.out.println("Coordenadas objecto escolhido aleatoriamente: (" + arrayList.get(index).getCoords().getX() + ", " + arrayList.get(index).getCoords().getY() + ")\n"); //debug
 		

@@ -19,8 +19,7 @@ public abstract class Agent extends Entity{
         this.memory = new Memory();
     }
     
-    
-    public abstract Coordinates pathFinder(ArrayList<Obj> arrayList, World mundo, Agent agent);
+    public abstract Coordinates pathFinder(ArrayList<Obj> arrayList, World mundo);
     
     //Walk function
     public void walk(World mundo, Coordinates coordsFinal, Agent agent) {
@@ -103,8 +102,6 @@ public abstract class Agent extends Entity{
 	
 	ArrayList<Obj> list = new ArrayList<>();
 
-        System.out.println("Agente a averiguar campo de visão, tempo de vida " + agent.getLifeSpan() + " passos"); //debug
-        
 	//Definir os limites do campo de visão
 	if(x - field < 0){
             auxXIni = 0;
