@@ -169,4 +169,13 @@ public abstract class Agent extends Entity{
     public void setMemory(Memory memory) {
         this.memory = memory;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + ", Raio de Visão: " + fieldOfSight + ", Tempo de Vida: " + lifeSpan + ", Próximo alvo: " + nextTarget + ", " + memory;
+    }
+    
+    public String toString(int i) {
+        return super.toString(1) + "\nRaio de Visão: " + fieldOfSight + "\nTempo de Vida: " + lifeSpan + "\n" + memory.toString(1);
+    }
 }

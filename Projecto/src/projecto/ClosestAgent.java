@@ -57,4 +57,14 @@ public class ClosestAgent extends Agent{
         
         return distance;
     }
+
+    @Override
+    public String toString() {
+        return "Agente Closest " + super.toString();
+    }
+    
+    @Override
+    public String toString(int i) {
+        return "Agente Closest " + super.toString(1);
+    }
 }

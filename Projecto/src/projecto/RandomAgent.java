@@ -43,4 +43,13 @@ public class RandomAgent extends Agent{
         super(fieldOfSight, lifeSpan, id, color, coords);
     }
     
+    @Override
+    public String toString() {
+        return "Agente Random " + super.toString();
+    }
+    
+    @Override
+    public String toString(int i) {
+        return "Agente Random " + super.toString(1);
+    }
 }

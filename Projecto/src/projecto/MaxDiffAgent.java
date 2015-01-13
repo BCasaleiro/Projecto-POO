@@ -69,4 +69,13 @@ public class MaxDiffAgent extends Agent {
             
         return diff;
     }
+    
+    @Override
+    public String toString() {
+        return "Agente MaxDiff " + super.toString();
+    }
+    
+    public String toString(int i) {
+        return "Agente MaxDiff " + super.toString(1);
+    }
 }

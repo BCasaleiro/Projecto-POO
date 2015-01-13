@@ -47,4 +47,13 @@ public abstract class Entity {
     public Coordinates getCoords() {
         return coords;
     }
+
+    @Override
+    public String toString() {
+        return "Id: " + id + ", Forma: " + shape + ", Cor: " + color + ", Coordenadas: " + coords;
+    }
+    
+    public String toString(int i) {
+        return "\nId: " + id + "\nForma: " + shape + "\nCor: " + color;
+    }
 }

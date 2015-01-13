@@ -30,10 +30,23 @@ public class World {
     }
 
     public void simulation() {
-        initTerrain();
-        
-        for (Agent agent : agents) {
-            agentLife(agent);
+        try {
+            FileManagement files = new FileManagement();
+            GUI infoAgent;
+            
+            files.openWrite("logs.txt");
+            
+            initTerrain();
+            
+            for (Agent agent : agents) {
+                agentLife(agent);
+                infoAgent = new GUI(agent.toString(1));
+                files.writeLine(agent.toString());
+            }
+            
+            files.closeWrite();
+        } catch (IOException ex) {
+            Logger.getLogger(World.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

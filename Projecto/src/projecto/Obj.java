@@ -18,4 +18,14 @@ public class Obj extends Entity{
     public String getObject() {
         return object;
     }
+
+    @Override
+    public String toString() {
+        return "{" + object + ", " +  super.toString() + "}";
+    }
+
+    @Override
+    public String toString(int i) {
+        return object;
+    }
 }

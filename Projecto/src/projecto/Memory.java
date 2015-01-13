@@ -27,18 +27,15 @@ public class Memory {
         int flag  = 0;
         
         nObjectsFound++;
-        objectsFound.add(newObject);
         System.out.println("Adicionado o objecto " + newObject.getId() + " à memória");
         
         for(int i = 0; i < objectsFound.size();i++){
-            if(!newObject.getObject().equals(objectsFound.get(i).getObject())){
-                flag = 1;
-            } else if(!newObject.getShape().equals(objectsFound.get(i).getShape())){
-                flag = 1;
-            } else if(!newObject.getColor().equals(objectsFound.get(i).getColor())){
+            if(newObject.getObject().equals(objectsFound.get(i).getObject()) && newObject.getShape().equals(objectsFound.get(i).getShape()) && newObject.getColor().equals(objectsFound.get(i).getColor())){
                 flag = 1;
             }
         }
+        
+        objectsFound.add(newObject);
         
         if(flag == 0){
             nDifferentObjFound++;
@@ -68,4 +65,43 @@ public class Memory {
     public int getDistance() {
         return distance;
     }
+
+    @Override
+    public String toString() {
+        String objFound = "{"; 
+        String agentPathString = "{";
+        String agentSurroundingString = "";
+        
+        for(int i = 0; i < this.getObjectsFound().size(); i++){
+            objFound += this.getObjectsFound().get(i).toString();
+        }
+        
+        for(int i = 0; i < getAgentPath().size(); i++){
+            agentPathString += this.getAgentPath().get(i).toString();
+        }
+        
+        for(int i = 0; i < getAgentSurrounding().size(); i++){
+            agentSurroundingString += "{";
+            for(int j = 0; j < getAgentSurrounding().get(i).size(); j++){
+                agentSurroundingString += this.getAgentSurrounding().get(i).get(j).toString();
+            }
+            agentSurroundingString = "}";   
+        }
+        
+        return "Memória{" + "Número de Objectos Encontrados: " + nObjectsFound + ", Número de Objectos Diferentes encontrados: " + nDifferentObjFound + ", Distancia percorrida: " + distance +  " Caminho Percorrido: " + agentPathString  + ", à sua volta: " + agentSurroundingString + ", Objectos encontrados: " + objFound +'}';
+    }
+    
+    public String toString(int i) {
+        String objFound = "{"; 
+        
+        for(int j = 0; j < this.getObjectsFound().size(); j++){
+            objFound += this.getObjectsFound().get(j).toString(1) + " ";
+        }
+        
+        objFound += "}";
+        
+        return "Número de Objectos Encontrados " + nObjectsFound + "\nNúmero de Objectos Diferentes encontrados: " + nDifferentObjFound + "\nDistancia percorrida: " + distance + "\nObjectos encontrados: " + objFound +'}';
+    }
+    
+    
 }

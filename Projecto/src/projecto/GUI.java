@@ -106,7 +106,7 @@ public class GUI implements ActionListener{
     }
     
     public GUI(String agentInfo){
-        
+        JOptionPane.showMessageDialog(window, agentInfo, "Informação do Agente", JOptionPane.PLAIN_MESSAGE);
     }
     
     @Override
