@@ -14,11 +14,6 @@ public class ClosestAgent extends Agent{
     public Coordinates pathFinder(ArrayList<Obj> arrayList, World mundo) {
         Obj target;
         int flag = 0;
-        int menor;
-        
-        if(arrayList.isEmpty()){
-            return null;
-        }
 	
         do{
             if(!arrayList.isEmpty()){

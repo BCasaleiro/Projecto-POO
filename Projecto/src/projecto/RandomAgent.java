@@ -14,10 +14,6 @@ public class RandomAgent extends Agent{
         
 	System.out.println("\n----- Agente a escolher o objecto aleatório -----"); //debug	
 	System.out.println("Coordenadas Agente("+ this.getCoords().getX() + "," + this.getCoords().getY() + ")"); //debug
-		
-	if(arrayList.isEmpty()) {
-            return null;
-	}
         
         do{
             if(!arrayList.isEmpty()){
